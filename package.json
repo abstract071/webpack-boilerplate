@@ -13,27 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "",
-    "babel-eslint": "",
-    "babel-loader": "",
-    "clean-webpack-plugin": "",
-    "css-loader": "",
-    "eslint": "",
-    "eslint-config-standard": "",
-    "eslint-loader": "",
-    "eslint-plugin-promise": "",
-    "eslint-plugin-standard": "",
-    "extract-text-webpack-plugin": "",
-    "html-webpack-plugin": "",
-    "node-sass": "",
-    "sass-loader": "",
-    "style-loader": "",
-    "webpack": "",
-    "webpack-dev-server": "",
-    "webpack-merge": "",
-    "webpack-validator": ""
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.2",
+    "webpack": "^2.2.1"
   },
-  "dependencies": {
-    "babel-runtime": ""
-  }
+  "dependencies": {}
 }
