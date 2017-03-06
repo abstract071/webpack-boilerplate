@@ -28,19 +28,32 @@ module.exports = {
         path: PATHS.dist
     },
     module: {
-        rules: [{
-            test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
-                use: ['css-loader', 'sass-loader']
-            })
-        }]
+        rules: [
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'sass-loader']
+                })
+            },
+            {
+                test: /\.(ttf|woff|woff2)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'fonts/[name].[ext]'
+                    }
+                }
+            }
+        ]
     },
     plugins: [
         new HtmlPlugin({
             title: 'Webpack 2 boilerplate',
             template: 'index.html'
         }),
-        new ExtractTextPlugin('main.css')
+        new ExtractTextPlugin({
+            filename: '[name].css'
+        })
     ]
 };
 
