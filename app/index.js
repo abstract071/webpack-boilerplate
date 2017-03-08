@@ -8,4 +8,7 @@ import './main.scss';
 
 //document.body.appendChild(component());
 document.body.innerHTML = 'Howdy )';
+document.body.appendChild(document.createElement("div"));
+document.body.appendChild(document.createElement("div"));
+document.body.appendChild(document.createElement("div"));
 //document.body.innerHTML = component2();
