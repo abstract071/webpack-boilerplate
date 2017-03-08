@@ -1,14 +1,24 @@
 import './main.scss';
-//import "babel-polyfill";
-//require("./main.scss");
-//require("./scss/ddd.scss");
+import './test';
+//import 'babel-polyfill';
+//require('./main.scss');
+//require('./scss/ddd.scss');
 //var component = require(`./component`);
-//var component2 = require("./jade/ddd.jade");
+//var component2 = require('./jade/ddd.jade');
 
 
-//document.body.appendChild(component());
 document.body.innerHTML = 'Howdy )';
-document.body.appendChild(document.createElement("div"));
-document.body.appendChild(document.createElement("div"));
-document.body.appendChild(document.createElement("div"));
-//document.body.innerHTML = component2();
+document.body.appendChild(document.createElement('div'));
+document.body.appendChild(document.createElement('div'));
+document.body.appendChild(document.createElement('div'));
+
+let i = 0;
+
+if (module.hot) {
+    module.hot.accept('./test', () => {
+        let element = document.createElement('div');
+        element.textContent = i;
+        document.body.appendChild(element);
+        i++;
+    });
+}

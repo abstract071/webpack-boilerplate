@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
@@ -64,6 +65,17 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        historyApiFallback: true,
+        hotOnly: true,
+        stats: 'errors-only',
+        host: process.env.HOST,
+        port: process.env.PORT,
+        overlay: {
+            errors: true,
+            warnings: true
+        }
+    },
     plugins: [
         new HtmlPlugin({
             title: 'Webpack 2 boilerplate',
@@ -71,7 +83,9 @@ module.exports = {
         }),
         new ExtractTextPlugin({
             filename: '[name].css'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
     ]
 };
 
