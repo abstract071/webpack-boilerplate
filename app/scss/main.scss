@@ -1,0 +1,34 @@
+@import "partials/fonts";
+
+html, body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2.5em;
+  font-weight: 300;
+  color: limegreen;
+}
+
+.ui.header {
+  color: #AA0101;
+  font-family: "Clicker Script", cursive;
+}
+
+body > div:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  background: url("../images/react.png") center no-repeat;
+  background-size: contain;
+}
+
+body > div:nth-child(3) {
+  width: 200px;
+  height: 200px;
+  background: url("../images/nodejs.jpg") center no-repeat;
+  background-size: contain;
+}
+
+body > div:nth-child(4) {
+  width: 200px;
+  height: 200px;
+  background: url("../images/angular.svg") center no-repeat;
+  background-size: contain;
+}

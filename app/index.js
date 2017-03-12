@@ -1,4 +1,4 @@
-import './main.scss';
+import './scss/main.scss';
 import './test';
 //import 'babel-polyfill';
 //require('./main.scss');
