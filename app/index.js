@@ -6,8 +6,13 @@ import './test';
 //var component = require(`./component`);
 //var component2 = require('./jade/ddd.jade');
 
-
-document.body.innerHTML = 'Howdy )';
+document.body.innerHTML = '<h2 class="ui icon header">' +
+    '<i class="settings icon"></i>' +
+    '<div class="content">' +
+    'Account Settings' +
+    '</div>' +
+    '</h2>';
+//document.body.innerHTML = 'Howdy )';
 document.body.appendChild(document.createElement('div'));
 document.body.appendChild(document.createElement('div'));
 document.body.appendChild(document.createElement('div'));

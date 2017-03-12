@@ -1,19 +1,21 @@
 const webpack = require("webpack");
 
-exports.setupDevServer = function(options) {
+module.exports = ({ host, port } = {}) => {
     return {
         devServer: {
             historyApiFallback: true,
-            hot: true,
-            inline: true,
-            stats: "errors-only",
-            host: options.host,
-            port: options.port
+            hotOnly: true,
+            stats: 'errors-only',
+            host,
+            port,
+            overlay: {
+                errors: true,
+                warnings: true
+            }
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin({
-                multiStep: true
-            })
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NamedModulesPlugin()
         ]
     }
 };
