@@ -12,7 +12,7 @@ import angularImgURI from './images/angular.svg'
 const App = () => {
   return (
     <Fragment>
-      <Button/>
+      <Button text="click me" />
       <br/>
       <img src={ nodeImgURI } />
       <img src={ reactImgURI } />

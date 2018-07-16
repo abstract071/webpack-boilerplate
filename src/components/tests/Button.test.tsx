@@ -5,7 +5,7 @@ import Button from '../Button'
 
 
 describe( 'Button', () => {
-  const button = shallow( <Button/> )
+  const button = shallow( <Button text="" /> )
 
   it( 'renders properly', () => {
     expect( button ).toMatchSnapshot()
