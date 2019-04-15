@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*",
+        "static/*"
+      ]
+    },
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
+    "module": "ESNext",
+    "target": "ESNext",
     "jsx": "react",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "node"
-  },
-  "include": [
-    "./src/**/*"
-  ]
+    "moduleResolution": "node",
+    "noEmit": true
+  }
 }

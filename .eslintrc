@@ -9,8 +9,9 @@
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 9,
+    "ecmaVersion": 10,
     "ecmaFeatures": {
       "jsx": true
     },
@@ -47,10 +48,6 @@
     "linebreak-style": [
       "error",
       "unix"
-    ],
-    "max-len": [
-      "error",
-      99
     ],
     "no-console": ["warn"],
     "no-debugger": ["warn"],
