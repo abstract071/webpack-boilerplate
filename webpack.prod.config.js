@@ -1,10 +1,11 @@
 const path = require( 'path' )
 const webpack = require( 'webpack' )
 const merge = require( 'webpack-merge' )
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' )
-const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' )
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
+const cssnano = require( 'cssnano' )
+const GitRevisionPlugin = require( 'git-revision-webpack-plugin' )
+const TerserPlugin = require( 'terser-webpack-plugin' )
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' )
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
 
 const common = require( './webpack.common.config' )
 
@@ -13,6 +14,7 @@ module.exports = merge( common, {
   mode: 'production',
   devtool: 'source-map',
   output: {
+    chunkFilename: '[name].[chunkhash].js',
     filename: '[name].[chunkhash].js',
     path: path.resolve( __dirname, 'dist' )
   },
@@ -21,53 +23,46 @@ module.exports = merge( common, {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
           {
-            loader: 'image-webpack-loader',
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader',
             options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              },
-              optipng: {
-                enabled: false
-              },
-              pngquant: {
-                quality: '65-90',
-                speed: 4
-              },
-              gifsicle: {
-                interlaced: false
-              },
-              webp: {
-                quality: 75
-              }
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[local]__[hash:base64:5]'
             }
-          }
+          },
+          'sass-loader'
         ]
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin( ['dist'] ),
+    new webpack.BannerPlugin( {
+      banner: new GitRevisionPlugin().version()
+    } ),
     new webpack.HashedModuleIdsPlugin(),
-    new webpack.DefinePlugin( {
-      'process.env.NODE_ENV': JSON.stringify( 'production' )
+    new OptimizeCSSAssetsPlugin( {
+      cssProcessor: cssnano,
+      cssProcessorOptions: {
+        discardComments: {
+          removeAll: true
+        },
+        safe: true
+      },
+      canPrint: false
     } ),
     new MiniCssExtractPlugin( {
-      filename: '[name].[hash].css',
+      filename: '[name].[contenthash].css',
       chunkFilename: '[id].[hash].css'
     } )
   ],
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: {
+      name: 'manifest'
+    },
     splitChunks: {
       cacheGroups: {
         vendors: {
@@ -78,10 +73,9 @@ module.exports = merge( common, {
       }
     },
     minimizer: [
-      new UglifyJsPlugin( {
+      new TerserPlugin( {
         sourceMap: true
-      } ),
-      new OptimizeCSSAssetsPlugin( {} )
+      } )
     ]
   }
 } )

@@ -9,6 +9,25 @@ module.exports = merge( common, {
   devServer: {
     contentBase: './dist',
     hot: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[local]__[hash:base64:5]'
+            }
+          },
+          'sass-loader'
+        ]
+      }
+    ]
   }
 } )
 

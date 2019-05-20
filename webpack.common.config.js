@@ -1,4 +1,5 @@
 const path = require( 'path' )
+const CleanWebpackPlugin = require( 'clean-webpack-plugin' )
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
 
 
@@ -15,25 +16,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin( {
+      title: 'Webpack Boilerplate',
       template: './index.html'
     } )
   ],
   module: {
     rules: [
-      // {
-      //   enforce: 'pre',
-      //   test: /\.tsx?$/,
-      //   use: [
-      //     'tslint-loader'
-      //   ]
-      // },
-      // {
-      //   test: /\.tsx?$/,
-      //   use: [
-      //     'awesome-typescript-loader'
-      //   ]
-      // },
       {
         enforce: 'pre',
         test: /\.(js|ts|tsx)s$/,
@@ -43,11 +33,6 @@ module.exports = {
           'source-map-loader'
         ]
       },
-      // {
-      //   test: /\.tsx?$/,
-      //   use: 'ts-loader',
-      //   exclude: /node_modules/
-      // },
       {
         test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
@@ -56,30 +41,25 @@ module.exports = {
         ]
       },
       {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[local]__[hash:base64:5]'
-            }
-          },
-          'sass-loader'
-        ]
-      },
-      {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader'
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]'
+            }
+          }
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          'file-loader'
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]'
+            }
+          }
         ]
       }
     ]

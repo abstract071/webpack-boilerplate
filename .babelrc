@@ -21,7 +21,11 @@
       "react-css-modules", {
         "filetypes": {
           ".scss": {
-            "syntax": "postcss-scss"
+            "syntax": "postcss-scss",
+            "plugins": [
+              "postcss-nested",
+              "postcss-nesting"
+            ]
           }
         },
         "generateScopedName": "[local]__[hash:base64:5]"
